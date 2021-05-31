@@ -27,20 +27,24 @@ def test_adjacent_surrounded():
 
 def test_adjacent_where_edge():
     # New box just to test edge case 
-    adjacent = box.get_adjacent(2,3)
+    box = Box([4,3],[])
+    adjacent = box.get_adjacent(5,5)
+
     # 5 values because box is on an edge
-    assert adjacent == [[1, 1], [1, 2], [1, 3], [2, 1], [2, 3]]
+    assert len(adjacent) == 5
     
 
 def test_adjacent_where_corner():
-    adjacent = box.get_adjacent(2,2)
+    box = Box([4,4],[])
+    adjacent = box.get_adjacent(5,5)
+
     # 3 boxes because box is touching 2 edges
-    assert adjacent == [[1, 1], [1, 2], [2, 1]]
+    assert len(adjacent) == 3
 
 # setbombs
-def test_set_bombs():
-    box.setBombs([[1,1],[1,2], [2,0]], 2, 2)
-    assert box.bombs == 2
+def test_count_bombs():
+    bombs = box.count_bombs([[1,1], [1,2], [2,0]], 3, 3)
+    assert bombs == 2
 
 # render
 def test_render_hidden():

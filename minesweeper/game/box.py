@@ -24,19 +24,21 @@ class Box:
                 if [x,y] == coords:
                     pass
                 else:
-                    if (-1 < x < num_cols + 1) and (-1 < y < num_rows + 1):
+                    if (-1 < x < num_cols) and (-1 < y < num_rows):
                         adjacent.append([x, y])
         return adjacent
 
 
-    def setBombs(self, bombs: list, cols: int, rows: int):
+    def count_bombs(self, bombs: list, cols: int, rows: int):
         if self.isBomb == False:
-            near = 0
+            numBombs = 0
             boxes = self.get_adjacent(cols, rows)
             for bomb in bombs:
                 if bomb in boxes:
-                    near += 1
-            self.bombs = near
+                    numBombs += 1
+            self.bombs = numBombs
+            return numBombs
+        return None
 
 
     def render(self):
