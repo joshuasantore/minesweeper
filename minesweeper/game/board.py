@@ -33,11 +33,11 @@ class Board:
             rows.append(row)
         return rows
 
-    def reveal(self, coords):
+    def reveal(self, coords: list):
         box = self.rows[coords[1]][coords[0]]
         if box.hidden == True:
             box.hidden = False
-            box.flagged = False
+            box.isflagged = False
             self.rows[coords[1]][coords[0]] = box
             if box.bombs == 0:
                 for adjacent in box.get_adjacent(self.num_cols, self.num_rows):
@@ -66,3 +66,17 @@ class Board:
                 box.hidden = False
                 print(box.render(), end = "   ")
             print("\n")
+
+    def count_flags(self):
+        flag_count = 0
+        for row in self.rows:
+            flags = filter(lambda x: x.isflagged == True, row)
+            flag_count += len(list(flags))     
+        return flag_count
+
+    def count_hidden(self):
+        hidden_count = 0
+        for row in self.rows:
+            hidden = filter(lambda box: box.hidden == True, row)
+            hidden_count += len(list(hidden))
+        return hidden_count
