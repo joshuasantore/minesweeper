@@ -12,13 +12,17 @@ Obviously, the first thing you should do is clone the project onto your machine 
 git clone https://github.com/joshuasantore/minesweeper.git
 ```
 
-The next thing I would personally do is create a new virtual environment for the project, as it does use termcolor a lot for gameplay and pytest for testing. : `python3 -m venv venv`
+The next thing I would personally do is create a new virtual environment for the project with `python3 -m venv venv`, as it does use termcolor a lot for gameplay and pytest for testing.
 
 ( p.s. It's recommended not to do this, but I keep my virtual environments in the root of the project for convenience sake )
+
 And then activate it with : `source venv/bin/activate`
 
-Once you've activated your venv, use :
-`pip install -r requirements.txt` to install the projects dependencies.
+Once you've activated your venv(or skipped using one altogether) install the project's dependencies with :
+
+```
+pip install -r requirements.txt
+```
 
 ## Bombs Away!
 
