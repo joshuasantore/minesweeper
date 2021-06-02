@@ -2,9 +2,6 @@ from minesweeper.game.board import Board
 from os import system
 import re
 
-def clear():
-    system('clear')
-
 class Runner:
     def __init__(self, num_cols: int, num_rows: int, num_bombs):
         self.board = Board(num_rows, num_cols, num_bombs)
@@ -55,8 +52,10 @@ class Runner:
 
     def run(self): 
         while self.state != 'loss' and self.state != 'win':
-            clear()
+            
+            system('clear')
             self.board.render()
+            print(f'Hidden: {self.board.count_hidden()}')
             print(f'Flags: {self.count_flags_left()}')
             print(f'Message: {self.message}')
             args = ''
@@ -68,9 +67,9 @@ class Runner:
             if (arg == 'r'):
                 self.reveal(coords)
             if (self.state != 'loss') and (self.board.count_hidden() == 0):
-                self.state == 'win'
+                self.state = 'win'
         
-        clear()
+        system('clear')
         print('\n')
         self.board.render_all()
         print(f'Message: {self.message}')

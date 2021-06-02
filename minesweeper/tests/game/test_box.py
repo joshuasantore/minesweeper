@@ -48,22 +48,29 @@ def test_count_bombs():
 
 # render
 def test_render_hidden():
-    assert box.render() == colored(' ? ', 'white', 'on_grey', attrs=['bold'] )
+    qm = '?'
+    assertVal = colored(f' {qm:^2} ', 'white', 'on_grey', attrs=['bold'] )
+    assert box.render() == assertVal
     
 def test_render_bomb():
     box.isBomb = True
     box.hidden = False
-    assert box.render() == colored(' B ', 'red', 'on_red', attrs=['bold'] )
+    bomb = 'B'
+    assertVal = colored(f' {bomb:^2} ', 'red', 'on_red', attrs=['bold'] )
+    assert box.render() == assertVal
 
-def test_render_bomb():
+def test_render_flag():
     box.isBomb = True
     box.hidden = True
     box.isflagged = True
-    assert box.render() == colored(' F ', 'grey', 'on_yellow', attrs=['bold'] )
+    flag = 'F'
+    assertVal = colored(f' {flag:^2} ', 'grey', 'on_yellow', attrs=['bold'] )
+    assert box.render() == assertVal
 
 def test_render_num_bombs():
     box.isBomb = False
     box.hidden = False
     box.isflagged = False
     box.bombs = 3
-    assert box.render() == colored(' 3 ', 'grey', 'on_cyan', attrs=['bold'] )
+    assertVal = colored(f' {box.bombs:^2} ', 'grey', 'on_cyan', attrs=['bold'] )
+    assert box.render() == assertVal

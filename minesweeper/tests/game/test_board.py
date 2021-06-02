@@ -22,13 +22,13 @@ def test_generate_rows():
 
 
 def test_count_hidden():
-    assert board.count_hidden() == 100
+    assert board.count_hidden() == 90
     board.rows[5][5].hidden = False
-    board.rows[6][6].hidden = False
-    assert board.count_hidden() == 98
+  
+    assert board.count_hidden() == 89
     board.rows[5][5].hidden = True
-    board.rows[6][6].hidden = True
-    assert board.count_hidden() == 100
+    
+    assert board.count_hidden() == 90
     
 # reveal coords, recursively if 0 bombs surrounding
 def test_reveal():

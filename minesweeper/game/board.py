@@ -44,26 +44,27 @@ class Board:
                     self.reveal(adjacent)
 
     def render(self):
-        print("   ", end="   ")
+        print("    ", end="   ")
         for i in range(self.num_cols):
-            print(colored(f" {i} ", 'grey', 'on_white', attrs=['bold']), end="   ")
+            print(colored(f" {i:^2} ", 'grey', 'on_white', attrs=['bold']), end="   ")
         print("\n")
         for row in self.rows:
-            print(colored(f" {self.rows.index(row)} ", 'grey', 'on_white', attrs=['bold']), end="   ")
+            print(colored(f" {self.rows.index(row):^2} ", 'grey', 'on_white', attrs=['bold']), end="   ")
             for box in row:
                 print(box.render(), end = "   ")
             print("\n")
                  
     
     def render_all(self):
-        print("   ", end="   ")
+        print("    ", end="   ")
         for i in range(self.num_cols):
-            print(colored(f" {i} ", 'grey', 'on_white', attrs=['bold']), end="   ")
+            print(colored(f" {i:^2} ", 'grey', 'on_white', attrs=['bold']), end="   ")
         print("\n")
         for row in self.rows:
-            print(colored(f" {self.rows.index(row)} ", 'grey', 'on_white', attrs=['bold']), end="   ")
+            print(colored(f" {self.rows.index(row):^2} ", 'grey', 'on_white', attrs=['bold']), end="   ")
             for box in row:
                 box.hidden = False
+                box.isflagged = False
                 print(box.render(), end = "   ")
             print("\n")
 
@@ -77,6 +78,6 @@ class Board:
     def count_hidden(self):
         hidden_count = 0
         for row in self.rows:
-            hidden = filter(lambda box: box.hidden == True, row)
+            hidden = filter(lambda box: box.hidden == True and box.isBomb == False, row)
             hidden_count += len(list(hidden))
         return hidden_count

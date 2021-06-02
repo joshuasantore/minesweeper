@@ -28,12 +28,10 @@ def test_parse_args():
     assert coords == [5,8]
 
 def test_flag():
-    print('\n') 
     runner.flag([3,2])
     assert runner.board.rows[2][3].isflagged == True
 
 def test_reveal():
-    print('\n')
     runner.reveal([5,2]) 
     if (runner.board.rows[2][5].isBomb == True):
         assert runner.message == 'revealed bomb at [5, 2]'
@@ -47,7 +45,9 @@ def test_reveal():
 
 # Leave commented out unless you need to test something specific about the gameplay <3
 
+'''
 def test_run():
     runner = Runner(5,5,5)
     runner.run()
+'''
 

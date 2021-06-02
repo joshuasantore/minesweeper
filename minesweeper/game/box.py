@@ -43,18 +43,20 @@ class Box:
 
     def render(self):
         if self.isBomb == True:
-            output = colored(' B ', 'red', 'on_red', attrs=['bold'] )
+            bomb = 'B'
+            output = colored(f' {bomb:^2} ', 'red', 'on_red', attrs=['bold'] )
         else:
             if self.bombs == 0:
-                output = colored(f' 0 ', 'grey', 'on_grey', attrs=['bold'] )
+                output = colored(f' {0:^2} ', 'grey', 'on_grey', attrs=['bold'] )
             else:
-                output = colored(f' {self.bombs} ', 'grey', 'on_cyan', attrs=['bold'] )
+                output = colored(f' {self.bombs:^2} ', 'grey', 'on_cyan', attrs=['bold'] )
 
         if self.hidden == True:
-            output = colored(' ? ', 'white', 'on_grey', attrs=['bold'] )
-    
+            qm = '?'
+            output = colored(f' {qm:^2} ', 'white', 'on_grey', attrs=['bold'] )
 
         if self.isflagged == True:
-            output = colored(' F ', 'grey', 'on_yellow', attrs=['bold'] )
-        #print(output, end = "   ")
+            flag = 'F'
+            output = colored(f' {flag:^2} ', 'grey', 'on_yellow', attrs=['bold'] )
+        
         return output
