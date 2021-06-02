@@ -1,6 +1,7 @@
 from minesweeper.game.board import Board
 from os import system
 import re
+from termcolor import cprint
 
 class Runner:
     def __init__(self, num_cols: int, num_rows: int, num_bombs):
@@ -51,15 +52,23 @@ class Runner:
                     self.message = f'revealed box at {coords}'  
 
     def run(self): 
-        while self.state != 'loss' and self.state != 'win':
-            
+        while self.state != 'loss' and self.state != 'win':  
             system('clear')
+            print('\n')
             self.board.render()
-            print(f'Hidden: {self.board.count_hidden()}')
-            print(f'Flags: {self.count_flags_left()}')
-            print(f'Message: {self.message}')
+            cprint(f'\n Hidden: {self.board.count_hidden()} ', 'white', 'on_grey')
+            cprint(f'\n Flags: {self.count_flags_left()} ', 'grey', 'on_yellow')
+            cprint(f'\n Message: {self.message} ', 'grey', 'on_cyan')
+            print('\nPlease type (f) to flag a box or (r) to reveal a box followed by the coords as 2 numbers(x,y) separated by a comma')
             args = ''
             while not self.validate_args(args):
+                system('clear')
+                self.board.render()
+                cprint(f'\n Hidden: {self.board.count_hidden()} ', 'white', 'on_grey')
+                cprint(f'\n Flags: {self.count_flags_left()} ', 'grey', 'on_yellow')
+                cprint(f'\n Message: {self.message} ', 'grey', 'on_cyan')
+                print('\nPlease type (f) to flag a box or (r) to reveal a box followed by the coords as 2 numbers(x,y) separated by a comma')
+                self.message = 'Invalid Input'
                 args = input('Your Input: ')
             [arg, coords] = self.parse_args(args)
             if (arg == 'f'):
