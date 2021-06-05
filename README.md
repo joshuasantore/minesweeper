@@ -39,7 +39,3 @@ Enjoy the game and feel free to let me know if you come across any bugs.
 Obviously, this isn't an original idea, nor do I think my implementation of it to be anythin to get excited about. It was just something I thought I'd enjoy making, that wouldn't take me too long to finish, and that's exactly what it was.
 
 I would credit those who originally created the game, but I really don't know who it is, and I'm not particularly motivated to find out. So this will be my credit. Good job dudes and/or dudettes, I had a lot of fun playing and remaking your game.
-
-## Still Reading?
-
-What's wrong with you lol. I'd give you a cookie but it'd take too long to pull up the ascii art for one so you'll just have to settle for a verbal one. <3
