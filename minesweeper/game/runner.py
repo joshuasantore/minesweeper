@@ -14,8 +14,14 @@ class Runner:
         return self.num_bombs - self.board.count_flags()
 
     def validate_args(self, arg_string: str):
-        if re.match(f'^(f|r) [0-{self.board.num_cols - 1}],[0-{self.board.num_rows - 1}]$', arg_string):
-            return True
+        # Validate Format
+        if re.match(f'^(f|r) [0-9]+,[0-9]+$', arg_string):
+            # Validate number given is actually on the board
+            [col, row] = arg_string.split(' ')[1].split(',')
+
+            if (int(col) < self.board.num_cols) and (int(row) < self.board.num_rows):
+                return True
+
         return False
     
     def parse_args(self, arg_string: str):

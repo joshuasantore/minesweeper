@@ -13,10 +13,14 @@ def test_count_flags_left():
     assert runner.count_flags_left() == 10
 
 def test_validate_args():
+    runner = Runner(16,16,15)
     assert runner.validate_args('f 1,1') == True
     assert runner.validate_args('f 8,8') == True
-    assert runner.validate_args('f 10,1') == False
-    assert runner.validate_args('r 10,1') == False
+    assert runner.validate_args('f 10,1') == True
+    assert runner.validate_args('r 10,1') == True
+    assert runner.validate_args('r 20,1') == False
+    assert runner.validate_args('f 20,1') == False
+    assert runner.validate_args('invalid input') == False
 
 def test_parse_args():
     [arg, coords] = runner.parse_args('f 1,1')  
