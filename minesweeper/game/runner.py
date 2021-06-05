@@ -13,9 +13,12 @@ class Runner:
     def count_flags_left(self):
         return self.num_bombs - self.board.count_flags()
 
+
     def validate_args(self, arg_string: str):
+
         # Validate Format
         if re.match(f'^(f|r) [0-9]+,[0-9]+$', arg_string):
+
             # Validate number given is actually on the board
             [col, row] = arg_string.split(' ')[1].split(',')
 
@@ -24,11 +27,13 @@ class Runner:
 
         return False
     
+
     def parse_args(self, arg_string: str):
         [arg, coords] = arg_string.split(' ')
         coords = coords.split(',')
         coords = [int(coords[0]), int(coords[1])]
         return [arg, coords]
+
 
     def flag(self, coords: list):
         if self.board.rows[coords[1]][coords[0]].hidden == True:
@@ -57,24 +62,22 @@ class Runner:
                     self.board.reveal(coords)
                     self.message = f'revealed box at {coords}'  
 
+    def loop_print(self):
+        system('clear')
+        print('\n')
+        self.board.render()
+        cprint(f'\n Nonbombs Left: {self.board.count_hidden()} ', 'white', 'on_grey')
+        cprint(f'\n Flags: {self.count_flags_left()} ', 'grey', 'on_yellow')
+        cprint(f'\n Message: {self.message} ', 'grey', 'on_cyan')
+        print('\nPlease type (f) to flag a box or (r) to reveal a box followed by the coords as 2 numbers(x,y) separated by a comma')
+
+
     def run(self): 
+        self.loop_print()
         while self.state != 'loss' and self.state != 'win':  
-            system('clear')
-            print('\n')
-            self.board.render()
-            cprint(f'\n Hidden: {self.board.count_hidden()} ', 'white', 'on_grey')
-            cprint(f'\n Flags: {self.count_flags_left()} ', 'grey', 'on_yellow')
-            cprint(f'\n Message: {self.message} ', 'grey', 'on_cyan')
-            print('\nPlease type (f) to flag a box or (r) to reveal a box followed by the coords as 2 numbers(x,y) separated by a comma')
             args = ''
             while not self.validate_args(args):
-                system('clear')
-                self.board.render()
-                cprint(f'\n Hidden: {self.board.count_hidden()} ', 'white', 'on_grey')
-                cprint(f'\n Flags: {self.count_flags_left()} ', 'grey', 'on_yellow')
-                cprint(f'\n Message: {self.message} ', 'grey', 'on_cyan')
-                print('\nPlease type (f) to flag a box or (r) to reveal a box followed by the coords as 2 numbers(x,y) separated by a comma')
-                self.message = 'Invalid Input'
+                self.loop_print()
                 args = input('Your Input: ')
             [arg, coords] = self.parse_args(args)
             if (arg == 'f'):
